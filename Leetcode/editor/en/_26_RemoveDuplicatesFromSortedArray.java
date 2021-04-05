@@ -6,8 +6,8 @@ public class _26_RemoveDuplicatesFromSortedArray{
     
     public void run() {
         Solution s = new Solution();
-//        int []nums = new int[] {1, 1, 2};
-        int []nums = new int[] {1, 1};
+        int []nums = new int[] {0,0,1,1,1,2,2,3,3,4};
+//        int []nums = new int[] {1, 1};
         System.out.println(Arrays.toString(nums));
         int len = s.removeDuplicates(nums);
         System.out.println(len);
@@ -16,25 +16,24 @@ public class _26_RemoveDuplicatesFromSortedArray{
 
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+//    public int removeDuplicates(int[] nums) {
+//        int count = 0;
+//        for (int i = 1; i<nums.length; i++) {
+//            if (nums[i] == nums[i-1])
+//                count++;
+//            else
+//                nums[i-count] = nums[i];
+//        }
+//        return nums.length - count;
+//    }
     public int removeDuplicates(int[] nums) {
-        if (nums.length < 2)
-            return nums.length;
-
-        int i = 1, j = 1;
-        while(i < nums.length && j < nums.length) {
-            if (nums[i] > nums[i-1]) {
-                i++;
+        int n = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i-1])
                 continue;
-            }
-            if (nums[j] < nums[i-1])
-                j = i;
-            while(j < nums.length && nums[j] == nums[i-1])
-                j++;
-            if (j == nums.length)
-                break;
-            nums[i++] = nums[j++];
+            nums[n++] = nums[i];
         }
-        return i;
+        return n;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
