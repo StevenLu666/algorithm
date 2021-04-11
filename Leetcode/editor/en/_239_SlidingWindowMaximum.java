@@ -1,6 +1,8 @@
 package editor.en;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 
 public class _239_SlidingWindowMaximum{
     
@@ -16,35 +18,29 @@ class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int len = nums.length;
         int[] result = new int[len-k+1];
-        int maxIndex = -1, maxNum = nums[0];
-        for (int i = 0; i <= len - k; i++) {
-            if (maxIndex == -1) {
-                maxIndex = i;
-                maxNum = nums[i];
-                for (int j = i; j < i+k; j++) {
-                    if (nums[j] >= maxNum) {
-                        maxIndex = j;
-                        maxNum = nums[j];
-                    }
-                }
-                result[i] = maxNum;
-            } else {
-                if (nums[i+k-1] >= maxNum) {
-                    maxIndex = i+k-1;
-                    maxNum = nums[i+k-1];
-                } else if (i > maxIndex) {
-                    maxIndex = i;
-                    maxNum = nums[i];
-                    for (int j = i; j < i+k; j++) {
-                        if (nums[j] >= maxNum) {
-                            maxIndex = j;
-                            maxNum = nums[j];
-                        }
-                    }
-                }
-                result[i] = maxNum;
+        int r = 0;
+
+        Deque<Integer> q = new ArrayDeque<>(); // save index
+        for (int i = 0; i < len; i++) {
+            // pop expired index
+            while(!q.isEmpty() && q.peekFirst() < (i-k+1)) {
+                q.pollFirst();
+            }
+
+            // pop the index of smaller number than current number
+            while(!q.isEmpty() && nums[q.peekLast()] < nums[i]) {
+                q.pollLast();
+            }
+
+            // offer current number
+            q.offerLast(i);
+
+            // record the first number
+            if (i >= k-1) {
+                result[r++] = nums[q.peekFirst()];
             }
         }
+
         return result;
     }
 }
