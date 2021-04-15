@@ -16,10 +16,39 @@ public class _239_SlidingWindowMaximum{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums.length < 2 || k < 2)
+            return nums;
+
         int len = nums.length;
         int[] result = new int[len-k+1];
-        int r = 0;
 
+        int[] leftMax = new int[len];
+        int[] rightMax = new int[len];
+
+        for (int i = 0; i < len; i++) {
+            if (i%k == 0) {
+                leftMax[i] = nums[i];
+            } else {
+                leftMax[i] = Math.max(leftMax[i-1], nums[i]);
+            }
+        }
+
+        rightMax[len-1] = nums[len-1];
+        for (int i = len-2; i >= 0; i--) {
+            if (i%k == 0) {
+                rightMax[i] = nums[i];
+            } else {
+                rightMax[i] = Math.max(rightMax[i+1], nums[i]);
+            }
+        }
+
+        for (int i = 0; i < len - k + 1; i++) {
+            result[i] = Math.max(rightMax[i], leftMax[i+k-1]);
+        }
+        return result;
+
+        /*
+        int r = 0;
         Deque<Integer> q = new ArrayDeque<>(); // save index
         for (int i = 0; i < len; i++) {
             // pop expired index
@@ -40,8 +69,8 @@ class Solution {
                 result[r++] = nums[q.peekFirst()];
             }
         }
-
         return result;
+        */
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
