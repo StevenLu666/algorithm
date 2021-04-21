@@ -1,26 +1,15 @@
 package editor.en;
 
+import java.util.Arrays;
+
 public class _98_ValidateBinarySearchTree{
     
     public void run() {
         Solution s = new Solution();
-        int a = 0,b = 0;
-        s.helper(a, b);
-        System.out.println(a);
-        System.out.println(b);
-    }
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode() {}
-        TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
+        TreeNode a = new TreeNode(new Integer[] {5,1,4,null,null,3,6});
+
+        System.out.println(s.isValidBST(a));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -56,11 +45,7 @@ class Solution {
 
         pre = root;
 
-        boolean right = isValidBST(root.right);
-        if (!right)
-            return false;
-
-        return true;
+        return isValidBST(root.right);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
