@@ -6,7 +6,7 @@ public class LeetcodeMain{
     public static void main(String[] args) {
         System.out.println("run test");
 
-        _98_ValidateBinarySearchTree solution = new _98_ValidateBinarySearchTree();
+        _104_MaximumDepthOfBinaryTree solution = new _104_MaximumDepthOfBinaryTree();
         solution.run();
     }
 }
