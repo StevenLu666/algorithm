@@ -6,7 +6,7 @@ public class LeetcodeMain{
     public static void main(String[] args) {
         System.out.println("run test");
 
-        _104_MaximumDepthOfBinaryTree solution = new _104_MaximumDepthOfBinaryTree();
+        _257_BinaryTreePaths solution = new _257_BinaryTreePaths();
         solution.run();
     }
 }
