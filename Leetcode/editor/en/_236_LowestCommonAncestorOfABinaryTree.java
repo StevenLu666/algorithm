@@ -12,7 +12,7 @@ public class _236_LowestCommonAncestorOfABinaryTree{
         TreeNode treeNode = new TreeNode(new Integer[] {3,5,1,6,2,0,8,null,null,7,4});
 
         TreeNode p = new TreeNode(5);
-        TreeNode q = new TreeNode(1);
+        TreeNode q = new TreeNode(7);
 
 
         TreeNode r = s.lowestCommonAncestor(treeNode, p, q);
@@ -31,6 +31,27 @@ public class _236_LowestCommonAncestorOfABinaryTree{
  */
 class Solution {
 
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null)
+            return null;
+
+        if (root.val == p.val || root.val == q.val)
+            return root;
+
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left == null) {
+            if (right != null)
+                return right;
+            else
+                return null;
+        }
+        if (right == null)
+            return left;
+        return root;
+    }
+    /*
+    // Slowly, but can check if the given node exists.
     private boolean findNodePath(TreeNode root, TreeNode node, LinkedList<TreeNode> result) {
 
         if (root == null) {
@@ -81,6 +102,7 @@ class Solution {
 
         return result;
     }
+    */
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
