@@ -6,7 +6,7 @@ public class LeetcodeMain{
     public static void main(String[] args) {
         System.out.println("run test");
 
-        _236_LowestCommonAncestorOfABinaryTree solution = new _236_LowestCommonAncestorOfABinaryTree();
+        _77_Combinations solution = new _77_Combinations();
         solution.run();
     }
 }
