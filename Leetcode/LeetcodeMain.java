@@ -6,7 +6,7 @@ public class LeetcodeMain{
     public static void main(String[] args) {
         System.out.println("run test");
 
-        _46_Permutations solution = new _46_Permutations();
+        _78_Subsets solution = new _78_Subsets();
         solution.run();
     }
 }
