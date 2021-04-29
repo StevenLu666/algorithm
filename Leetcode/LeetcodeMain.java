@@ -6,7 +6,7 @@ public class LeetcodeMain{
     public static void main(String[] args) {
         System.out.println("run test");
 
-        _90_SubsetsIi solution = new _90_SubsetsIi();
+        _78_Subsets solution = new _78_Subsets();
         solution.run();
     }
 }
