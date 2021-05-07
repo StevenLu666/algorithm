@@ -29,12 +29,30 @@ public class _169_MajorityElement{
             return 0;
         }
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
+    class Solution2 {
         public int majorityElement(int[] nums) {
             Arrays.sort(nums);
             return nums[nums.length/2];
+        }
+    }
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    // same number will increase count, and different number will decrease count.
+    class Solution {
+        public int majorityElement(int[] nums) {
+            int major = nums[0];
+            int count = 0;
+            for (int i = 0; i < nums.length; i++) {
+                if (count == 0) {
+                    major = nums[i];
+                    count++;
+                } else if (major == nums[i]) {
+                    count++;
+                } else {
+                    count--;
+                }
+            }
+            return major;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
